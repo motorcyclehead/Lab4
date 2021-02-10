@@ -43,11 +43,17 @@ output GiveSoda, GiveDiet;
 
 always @(posedge CLK)
 
-	if(reset) begin
+	if(~reset) begin
 		state = Wait;
 	end
 	
 	else
+	
+	/*				Summary
+		One case for each state.  Advance to different state based
+		on coin inputs.  At final state, dispense soda or diet soda
+		based on selection inputs.	
+	*/
 		case (state)
 			Wait : begin
 				if(N)
@@ -137,8 +143,14 @@ always @(posedge CLK)
 				else if(diet)
 					GiveDiet = 1;
 			
+			assign reset = 1;//I'm not sure if this belongs
 			end
 			
 	endcase
+	
+	//Reset coin inputs
+	assign Q = 0;
+	assign D = 0;
+	assign N = 0;
 
 endmodule

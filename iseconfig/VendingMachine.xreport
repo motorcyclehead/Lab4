@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2021-02-09T17:57:44</DateModified>
+  <DateModified>2021-02-10T14:30:21</DateModified>
   <ModuleName>VendingMachine</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>D:/Users/toro0/Spring 2021/CDA 4203/Xilinx files/Lab4/iseconfig/VendingMachine.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>D:/Users/toro0/Spring 2021/CDA 4203/Xilinx files/Lab4</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>D:/Users/toro0/Spring 2021/CDA 4203/Xilinx files/Lab4\</ImplementationReportsDirectory>
   <DateInitialized>2021-02-09T17:57:44</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
