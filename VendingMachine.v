@@ -34,16 +34,18 @@ parameter fortyfive = 4'b0000;
 reg [3:0] state = Wait;
 
 // Inputs
-input Q, D, N, reset;
+input Q, D, N, reset, CLK;
 input soda, diet;
 
 
 //Outputs
 output GiveSoda, GiveDiet;
 
+reg GiveSoda, GiveDiet;
+
 always @(posedge CLK)
 
-	if(~reset) begin
+	if(reset) begin
 		state = Wait;
 	end
 	
@@ -142,8 +144,6 @@ always @(posedge CLK)
 					GiveSoda = 1;
 				else if(diet)
 					GiveDiet = 1;
-			
-			assign reset = 1;//I'm not sure if this belongs
 			end
 			
 	endcase
