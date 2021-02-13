@@ -149,5 +149,8 @@ always @(posedge CLK)
 			end
 			
 	endcase
-
+	//Reset coin inputs // doesn't seem necessary
+	assign Q = 0;
+	assign D = 0;
+	assign N = 0;
 endmodule
