@@ -21,15 +21,15 @@
 module VendingMachine(Q, D, N, soda, diet, reset, GiveSoda, GiveDiet, CLK);
 
 parameter Wait = 4'b0000;
-parameter five = 4'b0000;
-parameter ten = 4'b0000;
-parameter fifteen = 4'b0000;
-parameter twenty = 4'b0000;
-parameter twentyfive = 4'b0000;
-parameter thirty = 4'b0000;
-parameter thirtyfive = 4'b0000;
-parameter forty = 4'b0000;
-parameter fortyfive = 4'b0000;
+parameter five = 4'b0001;
+parameter ten = 4'b0010;
+parameter fifteen = 4'b0011;
+parameter twenty = 4'b0100;
+parameter twentyfive = 4'b0101;
+parameter thirty = 4'b0111;
+parameter thirtyfive = 4'b1000;
+parameter forty = 4'b1001;
+parameter fortyfive = 4'b1011;
 
 reg [3:0] state = Wait;
 
@@ -47,6 +47,8 @@ always @(posedge CLK)
 
 	if(reset) begin
 		state = Wait;
+		GiveDiet = 0;
+		GiveSoda = 0;
 	end
 	
 	else
@@ -62,18 +64,18 @@ always @(posedge CLK)
 					state = five;
 				else if(D)
 					state = ten;
-				else
+				else if(Q)
 					state = twentyfive;
 							
 			end
 			
 			five : begin
 				if(N)
-					state = five;
-				else if(D)
 					state = ten;
-				else
-					state = twentyfive;
+				else if(D)
+					state = fifteen;
+				else if(Q)
+					state = thirty;
 			
 			end
 			
@@ -82,7 +84,7 @@ always @(posedge CLK)
 					state = fifteen;
 				else if(D)
 					state = twenty;
-				else
+				else if(Q)
 					state = thirtyfive;
 			
 			end
@@ -92,7 +94,7 @@ always @(posedge CLK)
 					state = twenty;
 				else if(D)
 					state = twentyfive;
-				else
+				else if(Q)
 					state = forty;
 			end
 			
@@ -101,7 +103,7 @@ always @(posedge CLK)
 					state = twentyfive;
 				else if(D)
 					state = thirty;
-				else
+				else if(Q)
 					state = fortyfive;
 			end
 			
@@ -110,7 +112,7 @@ always @(posedge CLK)
 					state = thirty;
 				else if(D)
 					state = thirtyfive;
-				else
+				else if(Q)
 					state = fortyfive;
 			end
 		
@@ -119,7 +121,7 @@ always @(posedge CLK)
 					state = thirtyfive;
 				else if(D)
 					state = forty;
-				else
+				else if(Q)
 					state = fortyfive;
 			end
 			
@@ -134,7 +136,7 @@ always @(posedge CLK)
 			forty : begin
 				if(N)
 					state = five;
-				else
+				else 
 					state = fortyfive;
 			
 			end
@@ -147,10 +149,5 @@ always @(posedge CLK)
 			end
 			
 	endcase
-	
-	//Reset coin inputs
-	assign Q = 0;
-	assign D = 0;
-	assign N = 0;
 
 endmodule
